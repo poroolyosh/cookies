@@ -1,1 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+ }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Steppe-Book';
+  src: url('./assets/fonts/Steppe-Book.ttf');
+}
+
+@font-face {
+  font-family: 'Steppe-Book-ExtraBold';
+  src: url('./assets/fonts/Steppe-ExtraBold.ttf');
+}
+
+body {
+  background-color: #5243F4;
+  font-family: 'Steppe-Book', sans-serif;
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.button {
+  background-color: #fff;
+  border-radius: 60px;
+  width: 178px;
+  height: 58px;
+  padding: 18px;
+  text-align: center;
+  font-size: 18px;
+  color: #5243F4;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #eee;
+}
+
+.violet-button {
+  background-color: #5243F4;
+  color: #fff;
+}
+
+.button.violet-button:hover {
+  background-color: #3B2CD8;
+}
+
+.common-title {
+  font-family: 'Steppe-Book-ExtraBold', sans-serif;
+  font-size: 60px;
+  line-height: 100%;
+  margin-bottom: 20px;
+  text-align: center;  
+}
