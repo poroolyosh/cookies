@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  currency = "$";
 
   productsData = [
     {
@@ -106,8 +109,51 @@ export class AppComponent {
     },
   ];  
   
+  form = this.fb.group({
+    product: ["", Validators.required],
+    name: ["", Validators.required],
+    phone: ["", Validators.required],
+  });
+
+  constructor(private fb: FormBuilder) {
+
+  }
+
   scrollTo(target: HTMLElement) {
     target.scrollIntoView({behavior:"smooth"});
+  }
+
+  changeCurrency() {
+    
+    let newCurrency = "$";
+    let coefficient = 1;
+  
+    if (this.currency === "$") {
+      newCurrency = "₽";
+      coefficient = 90;
+    } else if (this.currency === "₽") { 
+      newCurrency = "BYN";
+      coefficient = 3;    
+    } else if (this.currency === 'BYN') {
+      newCurrency = '€';
+      coefficient = 0.9;
+    } else if (this.currency === '€') {
+      newCurrency = '¥';
+      coefficient = 6.9;
+    }
+    this.currency = newCurrency;
+  
+    this.productsData.forEach((item: any) => {
+      item.price = +(item.basePrice * coefficient).toFixed(1);
+    });
+
+  }
+
+  confirmOrder() {
+    if (this.form.valid) {
+      alert("Спасибо за заказ! Мы свяжемся с вами!");
+      this.form.reset();
+    }
   }
 
 

@@ -45,8 +45,8 @@ body {
   cursor: pointer;
 }
 
-.button:hover {
-  background-color: #eee;
+.button:hover:not(:disabled) {
+  background-color: #eeeeee;
 }
 
 .violet-button {
@@ -54,7 +54,13 @@ body {
   color: #fff;
 }
 
-.button.violet-button:hover {
+.button:disabled {
+  cursor: not-allowed;
+  color: gray;
+  background-color: #343434;
+}
+
+.button.violet-button:hover:not(:disabled) {
   background-color: #3B2CD8;
 }
 
