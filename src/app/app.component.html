@@ -48,10 +48,16 @@
     <div class="container">
       <img src="./assets/images/line2.png" alt="Line" class="line-2">
       <div class="common-title">Выберите печенье</div>
+      <div class="sugar-free">
+        <div>Все</div>
+        <input type="checkbox" id="switch" (change)="switchSugarFree($event)" />
+        <label for="switch"></label>
+        <div>Без сахара</div>
+      </div>
       <div class="products-items">
         <div class="products-item" *ngFor="let product of productsData">
           <div class="products-item-image">
-            <img src="./assets/images/{{product.image}}" alt="Product">
+            <img src="{{product.image}}" alt="Product">
           </div>
           <div class="products-item-details">
             <div class="products-item-title">{{product.title}}</div>
@@ -61,7 +67,7 @@
                 <div class="products-item-price">{{product.price}} {{currency}}</div>
                 <div class="products-item-weight">{{product.weight}}</div>
               </div>
-              <button class="button violet-button" (click)="scrollTo(order)">Заказать</button>
+              <button class="button violet-button" (click)="scrollTo(order, product)">Заказать</button>
             </div>
           </div>
         </div>
@@ -101,7 +107,8 @@
           </div>
           <div class="order-form-inputs" [formGroup]="form">
             <input type="text" placeholder="Выберите печенье" id="product" formControlName="product"
-              [class]="{'error': form.get('product')?.invalid && (form.get('product')?.dirty || form.get('product')?.touched)}">
+              [class]="{'error': form.get('product')?.invalid && (form.get('product')?.dirty || form.get('product')?.touched)}"
+              readonly>
             <input type="text" placeholder="Ваше имя" id="youname" formControlName="name"
               [class]="{'error': form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)}">
             <input type="text" placeholder="Ваш телефон" id="phone" formControlName="phone"
